@@ -60,11 +60,34 @@ async function main() {
     { name: "Samsung Galaxy Watch 7", slug: "samsung-galaxy-watch-7", description: "Смарт-часы с анализом состава тела, BioActive-сенсором и Wear OS.", price: 29990, stock: 20, categoryId: catWatch.id, brandId: samsung.id, images: ["/uploads/placeholder.jpg"], specs: { display: "40 мм Super AMOLED", chip: "Exynos W1000", gps: "L1 + L5", battery: "40 часов", waterproof: "5 ATM" } },
   ];
 
+  const productImages: Record<string, string[]> = {
+    "iphone-15-pro": ["/uploads/iphone-15-pro.png"],
+    "iphone-15": ["/uploads/iphone-15.png"],
+    "samsung-galaxy-s24-ultra": ["/uploads/samsung-s24-ultra.jpg"],
+    "samsung-galaxy-s24": ["/uploads/samsung-s24.jpg"],
+    "xiaomi-14": ["/uploads/xiaomi-14.jpg"],
+    "macbook-pro-14-m3-pro": ["/uploads/macbook-pro-14-m3.png"],
+    "macbook-air-15-m3": ["/uploads/macbook-air-15-m3.jpg"],
+    "ipad-pro-13-m4": ["/uploads/ipad-pro-13-m4.png"],
+    "ipad-air-11-m2": ["/uploads/ipad-air-11-m2.png"],
+    "samsung-galaxy-tab-s9-ultra": ["/uploads/samsung-tab-s9-ultra.jpg"],
+    "xiaomi-pad-6": ["/uploads/xiaomi-pad-6.jpg"],
+    "airpods-pro-2": ["/uploads/airpods-pro-2.png"],
+    "sony-wh-1000xm5": ["/uploads/sony-wh-1000xm5.jpg"],
+    "apple-watch-ultra-2": ["/uploads/apple-watch-ultra-2.jpg"],
+    "apple-watch-series-9": ["/uploads/apple-watch-series-9.jpg"],
+  };
+
   for (const product of products) {
+    const productWithImage = {
+      ...product,
+      images: productImages[product.slug] ?? product.images,
+    };
+
     await prisma.product.upsert({
       where: { slug: product.slug },
-      update: {},
-      create: product,
+      update: { images: productWithImage.images },
+      create: productWithImage,
     });
   }
 

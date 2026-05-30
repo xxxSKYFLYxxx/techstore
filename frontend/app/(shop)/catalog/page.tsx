@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { Product, Category, Brand } from "@/types";
@@ -18,7 +18,7 @@ const CAT_ICONS: Record<string, string> = {
 
 const API = "http://localhost:4000/api";
 
-export default function CatalogPage() {
+function CatalogPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -279,5 +279,13 @@ export default function CatalogPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CatalogPage() {
+  return (
+    <Suspense fallback={<div className="max-w-7xl mx-auto px-5 sm:px-8 py-8" />}>
+      <CatalogPageContent />
+    </Suspense>
   );
 }

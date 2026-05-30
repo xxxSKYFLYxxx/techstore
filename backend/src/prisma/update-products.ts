@@ -42,7 +42,7 @@ const updates = [
   },
   {
     slug: "samsung-galaxy-s24-ultra",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/samsung-s24-ultra.jpg"],
     specs: {
       "Дисплей": "6.8\" Dynamic AMOLED 2X, LTPO 1–120 Гц, QHD+ 3088×1440, 505 ppi",
       "Процессор": "Snapdragon 8 Gen 3 (4 нм), 8-ядерный",
@@ -60,7 +60,7 @@ const updates = [
   },
   {
     slug: "samsung-galaxy-s24",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/samsung-s24.jpg"],
     specs: {
       "Дисплей": "6.2\" Dynamic AMOLED 2X, 1–120 Гц, FHD+ 2340×1080, 416 ppi",
       "Процессор": "Snapdragon 8 Gen 3 (4 нм)",
@@ -77,7 +77,7 @@ const updates = [
   },
   {
     slug: "google-pixel-8-pro",
-    images: ["/uploads/google-pixel-8-pro.jpg"],
+    images: ["/uploads/placeholder.jpg"],
     specs: {
       "Дисплей": "6.7\" LTPO OLED, 1–120 Гц, QHD+ 2992×1344, 489 ppi, 2400 нит",
       "Процессор": "Google Tensor G3 (4 нм)",
@@ -94,7 +94,7 @@ const updates = [
   },
   {
     slug: "xiaomi-14",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/xiaomi-14.jpg"],
     specs: {
       "Дисплей": "6.36\" AMOLED LTPO, 1–120 Гц, FHD+ 2670×1200, 460 ppi, 3000 нит",
       "Процессор": "Snapdragon 8 Gen 3 (4 нм)",
@@ -129,7 +129,7 @@ const updates = [
   },
   {
     slug: "macbook-air-15-m3",
-    images: ["/uploads/macbook-pro-14-m3.png"],
+    images: ["/uploads/macbook-air-15-m3.jpg"],
     specs: {
       "Дисплей": "15.3\" Liquid Retina, 60 Гц, 2880×1864, 224 ppi, 500 нит",
       "Процессор": "Apple M3, 8-ядерный CPU (4P+4E)",
@@ -193,7 +193,7 @@ const updates = [
   },
   {
     slug: "samsung-galaxy-tab-s9-ultra",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/samsung-tab-s9-ultra.jpg"],
     specs: {
       "Дисплей": "14.6\" Dynamic AMOLED 2X, 120 Гц, 2960×1848, 240 ppi",
       "Процессор": "Snapdragon 8 Gen 2 (4 нм)",
@@ -209,7 +209,7 @@ const updates = [
   },
   {
     slug: "xiaomi-pad-6",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/xiaomi-pad-6.jpg"],
     specs: {
       "Дисплей": "11\" IPS LCD, 144 Гц, 2880×1800, 309 ppi",
       "Процессор": "Snapdragon 870 (7 нм)",
@@ -287,7 +287,7 @@ const updates = [
   // ─── WATCHES ────────────────────────────────────────────────────────────────
   {
     slug: "apple-watch-ultra-2",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/apple-watch-ultra-2.jpg"],
     specs: {
       "Корпус": "49 мм, Титан класса 5",
       "Дисплей": "LTPO OLED, Always‑On, 2000 нит, 410×502",
@@ -302,7 +302,7 @@ const updates = [
   },
   {
     slug: "apple-watch-series-9",
-    images: ["/uploads/placeholder.jpg"],
+    images: ["/uploads/apple-watch-series-9.jpg"],
     specs: {
       "Корпус": "41 / 45 мм, алюминий или нержавеющая сталь",
       "Дисплей": "LTPO OLED, Always‑On, 2000 нит",

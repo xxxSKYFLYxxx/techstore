@@ -7,7 +7,8 @@
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
     "seed": "ts-node src/prisma/seed.ts",
-    "update-products": "ts-node src/prisma/update-products.ts"
+    "update-products": "ts-node src/prisma/update-products.ts",
+    "update-images": "ts-node src/prisma/update-images.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
