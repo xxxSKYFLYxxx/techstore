@@ -5,7 +5,6 @@
   "/(shop)/catalog/[slug]/page": "app/(shop)/catalog/[slug]/page.js",
   "/(shop)/catalog/page": "app/(shop)/catalog/page.js",
   "/(shop)/checkout/page": "app/(shop)/checkout/page.js",
-  "/(shop)/page": "app/(shop)/page.js",
   "/_global-error/page": "app/_global-error/page.js",
   "/_not-found/page": "app/_not-found/page.js",
   "/account/page": "app/account/page.js",

@@ -4,4 +4,5 @@ export declare function getProductBySlug(req: Request, res: Response, next: Next
 export declare function createProduct(req: Request, res: Response, next: NextFunction): Promise<void>;
 export declare function updateProduct(req: Request, res: Response, next: NextFunction): Promise<void>;
 export declare function deleteProduct(req: Request, res: Response, next: NextFunction): Promise<void>;
+export declare function uploadProductImage(req: Request, res: Response): void;
 //# sourceMappingURL=product.controller.d.ts.map

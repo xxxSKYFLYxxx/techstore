@@ -36,10 +36,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const productController = __importStar(require("../controllers/product.controller"));
 const auth_middleware_1 = require("../middlewares/auth.middleware");
+const upload_middleware_1 = require("../middlewares/upload.middleware");
 const router = (0, express_1.Router)();
 router.get("/", productController.getProducts);
+// Admin only — загрузка изображения (объявляем до "/:slug", иначе перехватит GET)
+router.post("/upload", auth_middleware_1.authenticate, auth_middleware_1.requireAdmin, upload_middleware_1.uploadImage.single("image"), productController.uploadProductImage);
 router.get("/:slug", productController.getProductBySlug);
-// Admin only
 router.post("/", auth_middleware_1.authenticate, auth_middleware_1.requireAdmin, productController.createProduct);
 router.put("/:id", auth_middleware_1.authenticate, auth_middleware_1.requireAdmin, productController.updateProduct);
 router.delete("/:id", auth_middleware_1.authenticate, auth_middleware_1.requireAdmin, productController.deleteProduct);

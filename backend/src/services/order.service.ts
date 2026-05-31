@@ -80,7 +80,12 @@ export async function getAllOrders(page = 1, limit = 20) {
   return { items, total, page, totalPages: Math.ceil(total / limit) };
 }
 
+const ORDER_STATUSES = ["PENDING", "CONFIRMED", "SHIPPED", "DELIVERED", "CANCELLED"];
+
 export async function updateOrderStatus(id: number, status: string) {
+  if (!ORDER_STATUSES.includes(status)) {
+    throw new AppError(400, "Invalid order status");
+  }
   const order = await prisma.order.findUnique({ where: { id } });
   if (!order) throw new AppError(404, "Order not found");
   return prisma.order.update({

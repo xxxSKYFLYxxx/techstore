@@ -71,6 +71,11 @@ async function updateProduct(id, data) {
     const exists = await db_1.default.product.findUnique({ where: { id } });
     if (!exists)
         throw new error_middleware_1.AppError(404, "Product not found");
+    if (data.slug && data.slug !== exists.slug) {
+        const slugTaken = await db_1.default.product.findUnique({ where: { slug: data.slug } });
+        if (slugTaken)
+            throw new error_middleware_1.AppError(409, "Slug already taken");
+    }
     const { specs, ...rest } = data;
     return db_1.default.product.update({
         where: { id },

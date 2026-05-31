@@ -38,6 +38,7 @@ exports.getProductBySlug = getProductBySlug;
 exports.createProduct = createProduct;
 exports.updateProduct = updateProduct;
 exports.deleteProduct = deleteProduct;
+exports.uploadProductImage = uploadProductImage;
 const productService = __importStar(require("../services/product.service"));
 async function getProducts(req, res, next) {
     try {
@@ -93,5 +94,13 @@ async function deleteProduct(req, res, next) {
     catch (err) {
         next(err);
     }
+}
+function uploadProductImage(req, res) {
+    const file = req.file;
+    if (!file) {
+        res.status(400).json({ message: "Файл не загружен" });
+        return;
+    }
+    res.status(201).json({ url: `/uploads/${file.filename}` });
 }
 //# sourceMappingURL=product.controller.js.map

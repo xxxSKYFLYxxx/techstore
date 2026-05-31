@@ -104,6 +104,10 @@ export async function updateProduct(id: number, data: Partial<{
 }>) {
   const exists = await prisma.product.findUnique({ where: { id } });
   if (!exists) throw new AppError(404, "Product not found");
+  if (data.slug && data.slug !== exists.slug) {
+    const slugTaken = await prisma.product.findUnique({ where: { slug: data.slug } });
+    if (slugTaken) throw new AppError(409, "Slug already taken");
+  }
   const { specs, ...rest } = data;
   return prisma.product.update({
     where: { id },

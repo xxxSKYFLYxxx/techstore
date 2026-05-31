@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Product } from "@/types";
-import { formatPrice, getImageUrl, isPlaceholder } from "@/lib/utils";
+import { formatPrice, getImageUrl, isPlaceholder, CATEGORY_ICONS } from "@/lib/utils";
 import { useCartStore } from "@/store/cart.store";
 import { useAuthStore } from "@/store/auth.store";
 import { useRouter } from "next/navigation";
@@ -54,6 +54,13 @@ export function ProductCard({ product }: { product: Product }) {
               style={{ fontSize: 120, color: "rgba(255,255,255,0.07)", fontFamily: "var(--font-display)", letterSpacing: "-4px" }}
             >
               {style.initial}
+            </span>
+            {/* Иконка категории по центру */}
+            <span
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none opacity-90"
+              style={{ fontSize: 56, filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.35))" }}
+            >
+              {CATEGORY_ICONS[product.category.slug] ?? "📦"}
             </span>
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.15em] text-white/40">

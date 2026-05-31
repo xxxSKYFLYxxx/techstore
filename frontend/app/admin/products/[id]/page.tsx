@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { useAuthStore } from "@/store/auth.store";
 import { productsApi, catalogApi } from "@/lib/api";
+import { getImageUrl } from "@/lib/utils";
 import { Category, Brand } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -24,6 +25,7 @@ export default function EditProductPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [fetching, setFetching] = useState(!isNew);
 
   useEffect(() => {
@@ -51,6 +53,28 @@ export default function EditProductPage() {
   function set(key: string, value: string) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
+
+  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploading(true);
+    try {
+      const { data } = await productsApi.uploadImage(file);
+      setForm((prev) => ({
+        ...prev,
+        images: prev.images ? `${prev.images}\n${data.url}` : data.url,
+      }));
+      toast.success("Изображение загружено");
+    } catch (err: unknown) {
+      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
+      toast.error(msg || "Не удалось загрузить изображение");
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  const imageList = form.images.split("\n").map((s) => s.trim()).filter(Boolean);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -143,6 +167,27 @@ export default function EditProductPage() {
               className="w-full px-3.5 py-2.5 rounded-xl border border-zinc-300 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 resize-none bg-white text-zinc-900"
               placeholder="/uploads/image.jpg"
             />
+
+            <label className="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-[#111110] text-white text-sm font-semibold rounded-xl hover:bg-[#3F3F46] transition-colors cursor-pointer w-fit">
+              {uploading ? (
+                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              )}
+              {uploading ? "Загрузка..." : "Загрузить файл"}
+              <input type="file" accept="image/*" className="hidden" onChange={handleUpload} disabled={uploading} />
+            </label>
+
+            {imageList.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {imageList.map((src, i) => (
+                  <div key={i} className="w-16 h-16 rounded-lg border border-zinc-200 bg-zinc-50 overflow-hidden flex-shrink-0">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={getImageUrl(src)} alt="" className="w-full h-full object-contain" />
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div>
             <label className="text-sm font-medium text-zinc-900 block mb-1.5">Характеристики (JSON)</label>

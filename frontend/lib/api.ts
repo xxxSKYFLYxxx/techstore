@@ -59,6 +59,14 @@ export const productsApi = {
   create: (data: FormData | Record<string, unknown>) => api.post("/products", data),
   update: (id: number, data: Record<string, unknown>) => api.put(`/products/${id}`, data),
   delete: (id: number) => api.delete(`/products/${id}`),
+  uploadImage: (file: File) => {
+    const fd = new FormData();
+    fd.append("image", file);
+    // Content-Type не задаём — браузер сам выставит multipart/form-data с boundary
+    return api.post<{ url: string }>("/products/upload", fd, {
+      headers: { "Content-Type": undefined },
+    });
+  },
 };
 
 // Catalog

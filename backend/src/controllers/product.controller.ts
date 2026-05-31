@@ -55,3 +55,12 @@ export async function deleteProduct(req: Request, res: Response, next: NextFunct
     next(err);
   }
 }
+
+export function uploadProductImage(req: Request, res: Response) {
+  const file = (req as Request & { file?: Express.Multer.File }).file;
+  if (!file) {
+    res.status(400).json({ message: "Файл не загружен" });
+    return;
+  }
+  res.status(201).json({ url: `/uploads/${file.filename}` });
+}

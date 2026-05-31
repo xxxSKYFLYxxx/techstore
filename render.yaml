@@ -26,7 +26,7 @@ services:
       - key: JWT_REFRESH_EXPIRES_IN
         value: 7d
       - key: CLIENT_URL
-        value: https://techstore-web.onrender.com
+        value: https://techstore-web-kd1a.onrender.com
 
   # ── Frontend (Next.js SSR) ───────────────────────────────
   - type: web
@@ -42,7 +42,7 @@ services:
       - key: PORT
         value: 10000
       - key: NEXT_PUBLIC_API_URL
-        value: https://techstore-api.onrender.com/api
+        value: https://techstore-api-9evw.onrender.com/api
 
 databases:
   # ── PostgreSQL (free tier) ───────────────────────────────
