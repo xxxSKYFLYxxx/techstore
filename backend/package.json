@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc",
-    "seed": "ts-node src/prisma/seed.ts",
-    "update-products": "ts-node src/prisma/update-products.ts",
-    "update-images": "ts-node src/prisma/update-images.ts"
+    "dev":            "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build":          "tsc",
+    "start":          "node dist/app.js",
+    "postinstall":    "prisma generate",
+    "db:migrate":     "prisma migrate deploy",
+    "db:seed":        "ts-node src/prisma/seed.ts",
+    "update-products":"ts-node src/prisma/update-products.ts",
+    "update-images":  "ts-node src/prisma/update-images.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

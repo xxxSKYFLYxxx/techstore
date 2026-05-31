@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+backend/uploads/*.jpg
+backend/uploads/*.png
+backend/uploads/*.jpeg
+!backend/uploads/placeholder.jpg
+frontend/.next/
+frontend/out/
