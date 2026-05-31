@@ -17,9 +17,7 @@ export default function LoginPage() {
   const [showPwd,  setShowPwd]  = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+    e.preventDefault(); setError(""); setLoading(true);
     try {
       const { data } = await authApi.login({ email, password });
       localStorage.setItem("accessToken",  data.tokens.accessToken);
@@ -30,75 +28,68 @@ export default function LoginPage() {
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message;
       setError(msg || "Неверный email или пароль");
-    } finally {
-      setLoading(false);
-    }
+    } finally { setLoading(false); }
   }
 
+  const inputCls = "w-full px-4 py-3 text-base bg-white border border-[#E4E4E7] rounded-xl outline-none focus:border-[#111110] focus:ring-2 focus:ring-[#111110]/10 transition-all placeholder:text-[#A1A1AA] text-[#111110]";
+
   return (
-    <div className="w-full max-w-[400px]">
+    <div className="w-full max-w-[420px]" style={{ fontFamily: "var(--font-body)" }}>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-zinc-900 tracking-tight mb-1.5">Вход в аккаунт</h1>
-        <p className="text-[13.5px] text-zinc-500">Введите данные для входа</p>
+        <h1 className="font-display font-bold text-[#111110] mb-2" style={{ fontSize: 26, letterSpacing: "-0.02em" }}>
+          Вход в аккаунт
+        </h1>
+        <p className="text-base text-[#71717A]">Введите данные для входа</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-[12.5px] font-semibold text-zinc-700 mb-1.5">Email</label>
+          <label className="block text-sm font-semibold text-[#3F3F46] mb-2">Email</label>
           <input
-            type="email"
-            placeholder="you@example.com"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-            className="w-full px-4 py-3 text-[14px] bg-white border border-zinc-200 rounded-xl outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-500/15 transition-all placeholder:text-zinc-400 text-zinc-900"
+            type="email" placeholder="you@example.com"
+            value={email} onChange={e => setEmail(e.target.value)} required
+            className={inputCls}
           />
         </div>
 
         <div>
-          <label className="block text-[12.5px] font-semibold text-zinc-700 mb-1.5">Пароль</label>
+          <label className="block text-sm font-semibold text-[#3F3F46] mb-2">Пароль</label>
           <div className="relative">
             <input
               type={showPwd ? "text" : "password"}
               placeholder="Минимум 6 символов"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-3 pr-11 text-[14px] bg-white border border-zinc-200 rounded-xl outline-none focus:border-blue-500 focus:ring-3 focus:ring-blue-500/15 transition-all placeholder:text-zinc-400 text-zinc-900"
+              value={password} onChange={e => setPassword(e.target.value)} required
+              className={`${inputCls} pr-12`}
             />
-            <button
-              type="button"
-              onClick={() => setShowPwd(!showPwd)}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600 transition-colors"
+            <button type="button" onClick={() => setShowPwd(!showPwd)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#A1A1AA] hover:text-[#71717A] transition-colors"
             >
               {showPwd
-                ? <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
-                : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                : <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
               }
             </button>
           </div>
         </div>
 
         {error && (
-          <div className="flex items-start gap-2.5 px-3.5 py-2.5 bg-red-50 border border-red-100 rounded-xl">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-            <p className="text-[13px] text-red-600">{error}</p>
+          <div className="flex items-start gap-3 px-4 py-3 bg-red-50 border border-red-100 rounded-xl">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-red-500 mt-0.5 flex-shrink-0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <p className="text-sm text-red-600">{error}</p>
           </div>
         )}
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full py-3 bg-zinc-900 hover:bg-zinc-700 text-white font-semibold text-[14px] rounded-xl transition-all disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+        <button type="submit" disabled={loading}
+          className="w-full py-3.5 bg-[#111110] hover:bg-[#3F3F46] text-white font-semibold text-base rounded-xl transition-colors disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
         >
           {loading && <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />}
           {loading ? "Входим..." : "Войти"}
         </button>
       </form>
 
-      <p className="text-[13px] text-center text-zinc-500 mt-6">
+      <p className="text-sm text-center text-[#71717A] mt-6">
         Нет аккаунта?{" "}
-        <Link href="/register" className="text-blue-600 font-semibold hover:underline">
+        <Link href="/register" className="text-[#111110] font-semibold hover:underline">
           Зарегистрироваться
         </Link>
       </p>
