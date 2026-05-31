@@ -7,17 +7,18 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev":            "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build":          "tsc",
-    "start":          "node dist/app.js",
-    "postinstall":    "prisma generate",
-    "db:migrate":     "prisma migrate deploy",
-    "db:seed":        "ts-node src/prisma/seed.ts",
-    "update-products":"ts-node src/prisma/update-products.ts",
-    "update-images":  "ts-node src/prisma/update-images.ts"
+    "dev":             "ts-node-dev --respawn --transpile-only src/app.ts",
+    "build":           "tsc",
+    "start":           "node dist/app.js",
+    "postinstall":     "prisma generate",
+    "db:migrate":      "prisma migrate deploy",
+    "db:seed":         "ts-node src/prisma/seed.ts",
+    "update-products": "ts-node src/prisma/update-products.ts",
+    "update-images":   "ts-node src/prisma/update-images.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "prisma": "^5.22.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -33,7 +34,6 @@
     "@types/jsonwebtoken": "^9.0.7",
     "@types/multer": "^1.4.12",
     "@types/node": "^22.9.0",
-    "prisma": "^5.22.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.3"
