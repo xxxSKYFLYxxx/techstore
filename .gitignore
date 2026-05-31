@@ -1,5 +1,5 @@
-node_modules/
-dist/
+﻿node_modules/
+# dist/ -- included for Render deployment
 .env
 .env.local
 *.log
