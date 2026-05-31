@@ -8,6 +8,7 @@ import { Category, Brand } from "@/types";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import toast from "react-hot-toast";
 
 export default function EditProductPage() {
@@ -83,7 +84,7 @@ export default function EditProductPage() {
   return (
     <div className="min-h-screen flex flex-col bg-zinc-100">
       <Header />
-      <main className="flex-1 max-w-2xl mx-auto w-full px-4 sm:px-6 py-8">
+      <main className="flex-1 max-w-2xl mx-auto w-full px-4 sm:px-6 py-8 pb-16">
         <h1 className="text-2xl font-semibold text-zinc-900 mb-6">
           {isNew ? "Новый товар" : "Редактировать товар"}
         </h1>
@@ -160,6 +161,7 @@ export default function EditProductPage() {
           </div>
         </form>
       </main>
+      <Footer />
     </div>
   );
 }

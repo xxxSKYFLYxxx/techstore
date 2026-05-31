@@ -8,6 +8,7 @@ import { productsApi, ordersApi, adminApi } from "@/lib/api";
 import { Product, Order } from "@/types";
 import { formatPrice, formatDate, ORDER_STATUS_LABELS, ORDER_STATUS_COLORS } from "@/lib/utils";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import toast from "react-hot-toast";
@@ -75,7 +76,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen flex flex-col bg-zinc-100">
       <Header />
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-8 pb-16">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-semibold text-zinc-900">Панель управления</h1>
           <Link href="/admin/products/new">
@@ -209,6 +210,7 @@ export default function AdminPage() {
           </>
         )}
       </main>
+      <Footer />
     </div>
   );
 }

@@ -16,7 +16,7 @@ const CAT_ICONS: Record<string, string> = {
   smartphones: "📱", laptops: "💻", tablets: "⬜", headphones: "🎧", watches: "⌚",
 };
 
-const API = "http://localhost:4000/api";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
 
 function CatalogPageContent() {
   const router = useRouter();
@@ -43,8 +43,8 @@ function CatalogPageContent() {
   const [localMax,    setLocalMax]    = useState(maxPrice);
 
   useEffect(() => {
-    fetch(`${API}/categories`).then(r => r.json()).then(d => setCategories(Array.isArray(d) ? d : [])).catch(() => {});
-    fetch(`${API}/brands`).then(r => r.json()).then(d => setBrands(Array.isArray(d) ? d : [])).catch(() => {});
+    fetch(`${API_URL}/categories`).then(r => r.json()).then(d => setCategories(Array.isArray(d) ? d : [])).catch(() => {});
+    fetch(`${API_URL}/brands`).then(r => r.json()).then(d => setBrands(Array.isArray(d) ? d : [])).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -60,7 +60,7 @@ function CatalogPageContent() {
     if (minPrice) p.set("minPrice", minPrice);
     if (maxPrice) p.set("maxPrice", maxPrice);
 
-    fetch(`${API}/products?${p.toString()}`)
+    fetch(`${API_URL}/products?${p.toString()}`)
       .then(r => r.json())
       .then(data => {
         if (!cancelled) {
