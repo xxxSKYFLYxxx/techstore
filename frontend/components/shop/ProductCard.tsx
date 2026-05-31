@@ -34,7 +34,8 @@ export function ProductCard({ product }: { product: Product }) {
   }
 
   const imageUrl = getImageUrl(product.images[0]);
-  const noImage  = isPlaceholder(product.images[0]);
+  const [imgFailed, setImgFailed] = useState(false);
+  const noImage  = isPlaceholder(product.images[0]) || imgFailed;
   const isOOS    = product.stock === 0;
   const lowStock = !isOOS && product.stock <= 5;
   const style    = BRAND_STYLES[product.brand.slug] ?? { bg: "linear-gradient(135deg,#2A2A28 0%,#3A3A38 100%)", initial: product.brand.name[0] };
@@ -76,6 +77,7 @@ export function ProductCard({ product }: { product: Product }) {
               fill
               className="object-contain p-5 transition-transform duration-400 group-hover:scale-[1.05]"
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+              onError={() => setImgFailed(true)}
             />
           </div>
         )}

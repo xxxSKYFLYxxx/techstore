@@ -71,7 +71,7 @@ self.__SERVER_FILES_MANIFEST={
         },
         {
           "protocol": "https",
-          "hostname": "techstore-api.onrender.com"
+          "hostname": "techstore-api-9evw.onrender.com"
         },
         {
           "protocol": "https",

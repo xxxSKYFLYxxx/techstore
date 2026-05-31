@@ -50,7 +50,7 @@
       },
       {
         "protocol": "https",
-        "hostname": "^(?:^(?:techstore\\-api\\.onrender\\.com)$)$",
+        "hostname": "^(?:^(?:techstore\\-api\\-9evw\\.onrender\\.com)$)$",
         "pathname": "^(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$))(?:(?:(?!(?:^|\\/)\\.{1,2}(?:\\/|$)).)*?)\\/?)$"
       },
       {
